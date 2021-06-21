@@ -1,0 +1,102 @@
+﻿@model ModelEF.Model.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/HuynhVy/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <i class="fa fa-pencil-square-o" style="font-size: 1.3em; padding: 10px;">&nbsp;Cập nhật thông tin sản phẩm</i>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="margin-left:5%; margin-right:5%;">
+        <h4 style="margin-left:10px; margin-top:10px">&nbsp;Mã sản phẩm: @Html.DisplayFor(model => model.ProductID)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="flex: 0%;  max-width: 100%;">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="flex: 0%;max-width: 100%;">
+                @Html.EditorFor(model => model.UnitCost, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitCost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="flex: 0%;max-width: 100%;">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProductID)
+            <div class="col-md-10">
+
+                @{var @imagePath = "~/Assets/images/" + @Html.DisplayFor(model => model.Image);
+                }
+                <img src="@Url.Content(imagePath)" alt="" style="width:250px; height:350px; margin-bottom: 20px;" />
+                @using (Html.BeginForm())
+                {
+                    <p>Chọn file upload: <input type="file" id="files" name="Image" accept="image/*,.pdf" value=" @Html.DisplayFor(model => model.Image)" /></p>
+                }
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="flex: 0%;max-width: 100%;">
+                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.CategoryID, (IEnumerable<SelectListItem>)ViewBag.type, "--Chọn loại--", new { @class = "form-control", @required = "" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="flex: 0%;max-width: 100%;">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="flex: 0%;max-width: 100%;">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style=" width:100%; float:left">
+                <p style="float:left; margin-left:60%; margin-right:20px;">
+                    @Html.ActionLink("Quay lại", "Index", "Product", new { @class = "btn btn-dark" })
+                </p>
+
+                <input margin-left="75%" type="submit" value="Save" class="btn btn-danger" />
+            </div>
+
+        </div>
+    </div>
+
+    <div style="width:100%; height:100px">
+
+    </div>
+}
+

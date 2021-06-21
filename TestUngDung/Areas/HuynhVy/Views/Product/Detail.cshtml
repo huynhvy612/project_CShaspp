@@ -1,0 +1,33 @@
+﻿@model ModelEF.Model.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/HuynhVy/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <i class="fa fa-user" style="font-size: 1.3em; padding: 10px;">&nbsp;Chi tiết Sản phẩm</i>}
+<div style=" width:100%;">
+    <p style="float: left;margin-top: 10px;margin-left: 10px;">
+        @Html.ActionLink("Quay lại", "Index", "Product", new { @class = "btn btn-dark" })
+    </p>
+</div>
+<div style="float:left;background:white; width:80%;height:auto; padding:15px;margin-left:5%; margin-top:10px; border-radius:10px;">
+    <div style="float:left; width:65%">
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Mã sản phẩm: @Html.DisplayFor(model => model.ProductID)</h5>
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Tên sản phẩm: @Html.DisplayFor(model => model.ProductName)</h5>
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Giá sản phẩm: @Html.DisplayFor(model => model.UnitCost)</h5>
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Số lượng: @Html.DisplayFor(model => model.Quantity)</h5>
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Loại sản phẩm: @Html.DisplayFor(model => model.Category.CategoryName)</h5>
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Mô tả : @Html.DisplayFor(model => model.Description)</h5>
+        <h5 style="margin-left:10px; margin-top:10px">&nbsp;Tình trạng: @Html.DisplayFor(model => model.Status)</h5>
+    </div>
+    <div style="float:right; width:35%">
+        <h5 style="margin-left:10px; margin-top:10px">
+            &nbsp;Ảnh sản phẩm:
+        </h5>
+        @{var @imagePath = "~/Assets/images/" + @Html.DisplayFor(model => model.Image);
+        }
+        <img src="@Url.Content(imagePath)" alt="" style="width: 225px; height: 300px; margin-bottom: 20px;" />
+    </div>
+</div>
+<div style="width:100%; height:100px">
+</div>
